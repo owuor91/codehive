@@ -5,7 +5,7 @@ from flask import request
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import create_access_token, get_jwt_identity
 
-from app.db import db
+from app.base.db import db
 
 
 class BaseController:
@@ -35,11 +35,21 @@ class BaseController:
         session = db.session
         return session.query(model).filter(model.phone_number == phone).first()
 
+    @staticmethod
+    def find_by_email(model, email):
+        session = db.session
+        return session.query(model).filter(model.email == email).first()
+
     def login(self, model):
         data = json.loads(request.data)
         phone = data.get("phone_number")
         password = data.get("password")
-        item = BaseController.find_by_phone(model, phone)
+        email = data.get("email")
+        item = None
+        if phone is not None:
+            item = BaseController.find_by_phone(model, phone)
+        elif email is not None:
+            item = BaseController.find_by_email(model, email)
         if item and BaseController.password_is_valid(item, password):
             pk_name = model.__table__.primary_key.columns.values()[0].name
             access_token = create_access_token(

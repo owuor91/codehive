@@ -3,7 +3,8 @@ from flask_jwt_extended import JWTManager
 from flask_restful import Api
 from sentry_sdk.integrations.flask import FlaskIntegration
 
-from app.db import db
+from app.base.db import db
+from app.controllers import StudentController, StudentLogin
 
 from settings import DB_URL, JWT_SECRET_KEY
 import sentry_sdk
@@ -26,7 +27,8 @@ def create_app():
     with app.app_context():
         db.create_all()
 
-    # api.add_resource(CustomerRegistration, "/customer/register")
+    api.add_resource(StudentController, "/student/register")
+    api.add_resource(StudentLogin, "/student/login")
 
     return app
 

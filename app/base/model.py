@@ -3,7 +3,7 @@ import logging
 
 from sqlalchemy import Column, DateTime, String, Boolean, JSON
 from sqlalchemy.ext.declarative import declarative_base
-from app.db import db
+from app.base.db import db
 
 
 class BaseModel:
