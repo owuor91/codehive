@@ -23,7 +23,7 @@ class CourseController(Resource):
 
     @jwt_required()
     def get(self, pk=None):
-        return BaseController().get(CourseSchema(),pk)
+        return BaseController().get(CourseSchema(), pk)
 
     @jwt_required()
     def put(self, pk):
