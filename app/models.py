@@ -18,3 +18,13 @@ class Student(Base):
     date_of_birth = Column(Date, nullable=False)
     nationality = Column(ENUM(Nationality), nullable=False)
     password = Column(String(256), nullable=False)
+
+
+class Course(Base):
+    __tablename__ = "course"
+    course_id = Column(UUID(as_uuid=True), nullable=False, default=uuid4,
+                       primary_key=True)
+    course_name = Column(String(100), nullable=False, unique=True)
+    course_code = Column(String(100), nullable=False)
+    description = Column(String(250),nullable=False)
+    instructor = Column(String(100), nullable=False)

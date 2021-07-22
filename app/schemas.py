@@ -3,7 +3,7 @@ from marshmallow_enum import EnumField
 
 from app.base.schema import BaseSchema
 from app.enums import Nationality
-from app.models import Student
+from app.models import Student, Course
 
 
 class StudentSchema(BaseSchema):
@@ -18,3 +18,13 @@ class StudentSchema(BaseSchema):
     class Meta(BaseSchema.Meta):
         model = Student
 
+
+class CourseSchema(BaseSchema):
+    course_id = fields.UUID(dump_only=True)
+    course_name = fields.String(required=True)
+    course_code = fields.String(required=True)
+    description = fields.String(required=True)
+    instructor = fields.String(required=True)
+
+    class Meta(BaseSchema.Meta):
+        model = Course
