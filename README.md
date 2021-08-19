@@ -155,7 +155,7 @@ POST http://13.244.243.129/enrolments
 ### Get a student's enrolments
 Be sure to add the access token as a Bearer Token
 ```
-GET http://13.244.243.129/enrolments/<student_id>
+GET http://13.244.243.129/enrolments?student_id=<student_id>
 ```
 #### Response
 ```

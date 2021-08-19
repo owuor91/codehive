@@ -35,9 +35,7 @@ def create_app():
     api.add_resource(StudentController, "/students/register")
     api.add_resource(StudentLogin, "/students/login")
     api.add_resource(CourseController, "/courses", "/courses/<uuid:pk>")
-    api.add_resource(
-        EnrolmentController, "/enrolments", "/enrolments/<uuid:student_id>"
-    )
+    api.add_resource(EnrolmentController, "/enrolments")
 
     return app
 
