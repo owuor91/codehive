@@ -1,5 +1,5 @@
 from flask_jwt_extended import jwt_required
-from flask_restful import Resource
+from flask_restful import Resource, request
 
 from app.base.controller import BaseController
 from app.models import Student, Enrolment
@@ -41,12 +41,15 @@ class EnrolmentController(Resource):
         return BaseController().create(EnrolmentSchema())
 
     @jwt_required()
-    def get(self, student_id):
-        session = db.session
-        items = session.query(Enrolment).filter(
-            Enrolment.student_id == student_id
-        )
-        return [EnrolmentSchema().dump(x) for x in items], 200
+    def get(self):
+        student_id = request.args.get("student_id")
+        if student_id is not None:
+            session = db.session
+            items = session.query(Enrolment).filter(
+                Enrolment.student_id == student_id
+            )
+            return [EnrolmentSchema().dump(x) for x in items], 200
+        return {"error": "student_id required"}, 400
 
     @jwt_required()
     def delete(self, pk):
