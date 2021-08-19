@@ -128,5 +128,59 @@ GET http://13.244.243.129/courses
     }
 ]
 ```
+
+### Enrol student to a course
+Be sure to add the access token as a Bearer Token
+```
+POST http://13.244.243.129/enrolments
+{
+    "course_id": "37e39c62-bcd2-44c0-b835-c741254814c8",
+    "student_id": "e0d94341-53c9-49c5-909c-8bcae5873ac0"
+}
+```
+#### Response
+```
+{
+    "date_created": "2021-08-19T14:30:04.957989+03:00",
+    "date_updated": "2021-08-19T14:30:04.958017+03:00",
+    "created_by": "e0d94341-53c9-49c5-909c-8bcae5873ac0",
+    "updated_by": "e0d94341-53c9-49c5-909c-8bcae5873ac0",
+    "active": true,
+    "enrolment_id": "99e78d24-f997-4022-b0a2-0efa4cce6e4b",
+    "course_id": "37e39c62-bcd2-44c0-b835-c741254814c8",
+    "student_id": "e0d94341-53c9-49c5-909c-8bcae5873ac0"
+}
+```
+
+### Get a student's enrolments
+Be sure to add the access token as a Bearer Token
+```
+GET http://13.244.243.129/enrolments/<student_id>
+```
+#### Response
+```
+[
+    {
+        "date_created": "2021-08-19T14:30:04.957989+03:00",
+        "date_updated": "2021-08-19T14:30:04.958017+03:00",
+        "created_by": "e0d94341-53c9-49c5-909c-8bcae5873ac0",
+        "updated_by": "e0d94341-53c9-49c5-909c-8bcae5873ac0",
+        "active": true,
+        "enrolment_id": "99e78d24-f997-4022-b0a2-0efa4cce6e4b",
+        "course_id": "37e39c62-bcd2-44c0-b835-c741254814c8",
+        "student_id": "e0d94341-53c9-49c5-909c-8bcae5873ac0"
+    },
+    {
+        "date_created": "2021-08-19T14:36:15.406691+03:00",
+        "date_updated": "2021-08-19T14:36:15.406706+03:00",
+        "created_by": "e0d94341-53c9-49c5-909c-8bcae5873ac0",
+        "updated_by": "e0d94341-53c9-49c5-909c-8bcae5873ac0",
+        "active": true,
+        "enrolment_id": "dcbfecce-2207-49d3-886a-8e95ceb7e5d3",
+        "course_id": "790eebbd-1624-4a8a-a321-4a12ceb44f36",
+        "student_id": "e0d94341-53c9-49c5-909c-8bcae5873ac0"
+    }
+]
+```
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
