@@ -48,3 +48,12 @@ class Enrolment(Base):
     __table_args__ = (
         UniqueConstraint("student_id", "course_id", name="unq_student_course"),
     )
+
+
+class Photo(Base):
+    __tablename__ = "photo"
+    id = Column(
+        UUID(as_uuid=True), nullable=False, default=uuid4, primary_key=True
+    )
+    image_url = Column(String, nullable=False)
+    caption = Column(String, nullable=False)

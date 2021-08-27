@@ -3,7 +3,12 @@ from flask_restful import Resource, request
 
 from app.base.controller import BaseController
 from app.models import Student, Enrolment
-from app.schemas import StudentSchema, CourseSchema, EnrolmentSchema
+from app.schemas import (
+    StudentSchema,
+    CourseSchema,
+    EnrolmentSchema,
+    PhotoSchema,
+)
 from app.base.db import db
 
 
@@ -54,3 +59,20 @@ class EnrolmentController(Resource):
     @jwt_required()
     def delete(self, pk):
         return BaseController().delete(EnrolmentSchema(), pk)
+
+
+class PhotosController(Resource):
+    @jwt_required()
+    def post(self):
+        return BaseController().create(PhotoSchema())
+
+    def get(self, pk=None):
+        return BaseController().get(PhotoSchema(), pk)
+
+    @jwt_required()
+    def put(self, pk):
+        return BaseController().update(PhotoSchema(), pk)
+
+    @jwt_required()
+    def delete(self, pk):
+        return BaseController().delete(PhotoSchema(), pk)
