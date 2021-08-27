@@ -3,7 +3,7 @@ from marshmallow_enum import EnumField
 
 from app.base.schema import BaseSchema
 from app.enums import Nationality
-from app.models import Student, Course, Enrolment
+from app.models import Student, Course, Enrolment, Photo
 
 
 class StudentSchema(BaseSchema):
@@ -37,3 +37,19 @@ class EnrolmentSchema(BaseSchema):
 
     class Meta(BaseSchema.Meta):
         model = Enrolment
+
+
+class PhotoSchema(BaseSchema):
+    date_created = fields.DateTime(load_only=True)
+    date_updated = fields.DateTime(load_only=True)
+    created_by = fields.String(load_only=True)
+    updated_by = fields.String(load_only=True)
+    active = fields.Boolean(load_only=True)
+    id = fields.UUID(dump_only=True)
+    image_url = fields.String(required=True)
+    caption = fields.String(required=True)
+
+    class Meta(BaseSchema.Meta):
+        model = Photo
+
+

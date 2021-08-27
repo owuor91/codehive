@@ -9,6 +9,7 @@ from app.controllers import (
     StudentLogin,
     CourseController,
     EnrolmentController,
+    PhotosController,
 )
 
 from settings import DB_URL, JWT_SECRET_KEY
@@ -36,6 +37,7 @@ def create_app():
     api.add_resource(StudentLogin, "/students/login")
     api.add_resource(CourseController, "/courses", "/courses/<uuid:pk>")
     api.add_resource(EnrolmentController, "/enrolments")
+    api.add_resource(PhotosController, "/photos", "/photos/<uuid:pk>")
 
     return app
 
