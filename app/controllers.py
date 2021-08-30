@@ -8,8 +8,10 @@ from app.schemas import (
     CourseSchema,
     EnrolmentSchema,
     PhotoSchema,
+    CalculatorSchema,
 )
 from app.base.db import db
+import json
 
 
 class StudentController(Resource):
@@ -76,3 +78,46 @@ class PhotosController(Resource):
     @jwt_required()
     def delete(self, pk):
         return BaseController().delete(PhotoSchema(), pk)
+
+
+class Arithmetic:
+    def calculate(self, operation):
+        data = json.loads(request.data)
+        errors = CalculatorSchema().validate(data)
+        if errors:
+            return {"errors": str(errors)}, 400
+
+        number_one = data["number_one"]
+        number_two = data["number_two"]
+
+        if operation == "+":
+            result = number_one + number_two
+        elif operation == "-":
+            result = number_one - number_two
+        elif operation == "*":
+            result = number_one * number_two
+        elif operation == "/":
+            result = number_one / number_two
+        else:
+            result = 0
+        return {"result": result}, 200
+
+
+class AdditionController(Resource):
+    def post(self):
+        return Arithmetic().calculate("+")
+
+
+class SubtractionController(Resource):
+    def post(self):
+        return Arithmetic().calculate("-")
+
+
+class MultiplicationController(Resource):
+    def post(self):
+        return Arithmetic().calculate("*")
+
+
+class DivisionController(Resource):
+    def post(self):
+        return Arithmetic().calculate("/")

@@ -10,6 +10,10 @@ from app.controllers import (
     CourseController,
     EnrolmentController,
     PhotosController,
+    AdditionController,
+    SubtractionController,
+    MultiplicationController,
+    DivisionController,
 )
 
 from settings import DB_URL, JWT_SECRET_KEY
@@ -39,6 +43,10 @@ def create_app():
     api.add_resource(CourseController, "/courses", "/courses/<uuid:pk>")
     api.add_resource(EnrolmentController, "/enrolments")
     api.add_resource(PhotosController, "/photos", "/photos/<uuid:pk>")
+    api.add_resource(AdditionController, "/calculator/add")
+    api.add_resource(SubtractionController, "/calculator/subtract")
+    api.add_resource(MultiplicationController, "/calculator/multiply")
+    api.add_resource(DivisionController, "/calculator/divide")
 
     return app
 

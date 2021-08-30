@@ -1,4 +1,4 @@
-from marshmallow import fields
+from marshmallow import fields, Schema
 from marshmallow_enum import EnumField
 
 from app.base.schema import BaseSchema
@@ -53,3 +53,6 @@ class PhotoSchema(BaseSchema):
         model = Photo
 
 
+class CalculatorSchema(Schema):
+    number_one = fields.Number(required=True)
+    number_two = fields.Number(required=True)
